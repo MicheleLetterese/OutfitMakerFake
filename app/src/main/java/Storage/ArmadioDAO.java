@@ -83,7 +83,6 @@ public class ArmadioDAO {
                         taskCompletionSource.setResult(false);
                     }
                 });
-
         return taskCompletionSource.getTask();
     }
 

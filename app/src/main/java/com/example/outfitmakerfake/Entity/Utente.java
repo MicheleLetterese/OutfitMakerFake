@@ -9,6 +9,7 @@ public class Utente {
     private String password;
     private String telefono;
     private String idArmadio;
+    private Boolean isAdmin=false;
 
     public Utente() {
     }

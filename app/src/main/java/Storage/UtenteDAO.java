@@ -12,6 +12,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import org.checkerframework.checker.nullness.qual.NonNull;
@@ -28,6 +29,7 @@ public class UtenteDAO {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     public Utente utente;
     String idArmadio;
+    Boolean isAdmin=false;
     public ArmadioDAO armadioDAO = new ArmadioDAO(mAuth, db);
     public UtenteDAO() {
     }
@@ -56,7 +58,7 @@ public class UtenteDAO {
                                 idArmadio = armadioDAO.generateUniqueArmadioId();
 
                                 Log.d("UTENTE", "UID in creaUtenteFirestore: " + uid);
-                                creaUtenteFirestore(uid, nome, cognome, email, password, telefono, idArmadio);
+                                creaUtenteFirestore(uid, nome, cognome, email, password, telefono, idArmadio, isAdmin);
                                 utente = new Utente(uid, nome, cognome, email, password, telefono, idArmadio);
                                 taskCompletionSource.setResult(true);
                             } else {
@@ -75,8 +77,11 @@ public class UtenteDAO {
         return taskCompletionSource.getTask();
     }
 
-    public void creaUtenteFirestore(String uid, String nome, String cognome, String email, String password, String telefono, String idArmadio) {
+    public void creaUtenteFirestore(String uid, String nome, String cognome, String email, String password, String telefono, String idArmadio, Boolean isAdmin) {
 
+        //nel caso in cui non trovi la collezione di utenti la va a creare, va a creare il documento in base agli id degli utenti
+        // una volta eseguito il metodo firebase va a creare il nuovo utente che ha il nuovo id
+        //DocumentReference dR=db.collection("Utenti").document(utente.getId());
         //armadioDAO=new ArmadioDAO();
         Log.d("UTENTE", "Entra in creaUtenteFirestore");
         Map<String, Object> utente = new HashMap<>();
@@ -86,7 +91,8 @@ public class UtenteDAO {
         utente.put("email", email);
         utente.put("password", password);
         utente.put("telefono", telefono);
-        utente.put("idArmadio", idArmadio);  // Aggiorna con il nuovo campo
+        utente.put("idArmadio", idArmadio);// Aggiorna con il nuovo campo
+        utente.put("isAdmin", isAdmin);
         Log.d("UTENTE", "Legge i dati");
 
         db.collection("utenti")
@@ -114,16 +120,42 @@ public class UtenteDAO {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            taskCompletionSource.setResult(true);
+                            FirebaseUser user=mAuth.getCurrentUser();
+                            if(user!=null){
+                                verificaRuoloUtente(user, taskCompletionSource);
+                            }else {
+                                taskCompletionSource.setResult(false);
+                            }
                         } else {
+
                             taskCompletionSource.setResult(false);
                         }
-                    }
+                        }
                 });
 
         return taskCompletionSource.getTask();
     }
 
+
+    public void verificaRuoloUtente(FirebaseUser user, TaskCompletionSource<Boolean> taskCompletionSource){
+        String uid=user.getUid();
+        db.collection("utenti").document().get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@androidx.annotation.NonNull Task<DocumentSnapshot> task) {
+                if(task.isSuccessful()){
+                    DocumentSnapshot document= task.getResult();
+                    if(document!=null){
+                        boolean isAdmin= document.getBoolean("isAdmin");
+                        taskCompletionSource.setResult(isAdmin);
+                    }else{
+                        taskCompletionSource.setResult(false);
+                    }
+                }else{
+                    taskCompletionSource.setResult(false);
+                }
+            }
+        });
+    }
     public String getIdArmadio(){
         return this.idArmadio;
     }

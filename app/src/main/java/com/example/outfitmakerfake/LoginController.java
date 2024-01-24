@@ -15,6 +15,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import org.checkerframework.checker.nullness.qual.NonNull;
 
@@ -23,6 +24,7 @@ import Storage.UtenteDAO;
 
 public class LoginController extends AppCompatActivity {
     FirebaseAuth mAuth;
+    FirebaseFirestore fStore;
     EditText emailET;
     EditText passwordET;
     String email;
@@ -36,11 +38,15 @@ public class LoginController extends AppCompatActivity {
         setContentView(R.layout.login);
 
         mAuth = FirebaseAuth.getInstance();
+        fStore=FirebaseFirestore.getInstance();
+
         emailET = findViewById(R.id.editTextEmailLogin);
         passwordET = findViewById(R.id.editTextPasswordLogin);
         progressBar = findViewById(R.id.progressBarL);
 
         loginService = new LoginService(new UtenteDAO());
+
+
     }
 
     @Override
@@ -87,6 +93,8 @@ public class LoginController extends AppCompatActivity {
                         if (task.isSuccessful() && task.getResult()) {
                             Toast.makeText(getApplicationContext(), "Login avvenuto con successo", Toast.LENGTH_SHORT).show();
                             Intent i = new Intent(getApplicationContext(), Home.class);
+                            boolean isAdmin=loginService.isUtenteAdmin();
+                            gestisciAccesso(isAdmin);
                             startActivity(i);
                             finish();
                         } else {
@@ -97,8 +105,22 @@ public class LoginController extends AppCompatActivity {
                     }
                 });
         progressBar.setVisibility(View.INVISIBLE);
+
     }
 
+    public void gestisciAccesso(boolean isAdmin){
+        if(isAdmin){
+            //l'utente è amministratore
+            Intent i=new Intent(getApplicationContext(), SchermataAdmin.class);
+            startActivity(i);
+            finish();
+        }else{
+            //utente è un utente normale
+            Intent i=new Intent(getApplicationContext(), Home.class);
+            startActivity(i);
+            finish();
+        }
+    }
     public void vaiRegistrazione(View v){
         Intent i = new Intent(getApplicationContext(), RegistrazioneController.class);
         i.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);

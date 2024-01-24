@@ -62,7 +62,8 @@
             android:layout_marginTop="20dp"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:text="Modifica Dati"/>
+            android:text="Modifica Dati"
+            android:id="@+id/btnModificaDati"/>
 
         <Button
             android:layout_width="200dp"

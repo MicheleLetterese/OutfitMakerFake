@@ -35,6 +35,8 @@ public class RegistrazioneController extends AppCompatActivity {
     String email;
     String password;
     String telefono;
+
+    Boolean isUser;
     FirebaseFirestore db;
     FirebaseAuth mAuth;
 
@@ -83,6 +85,7 @@ public class RegistrazioneController extends AppCompatActivity {
         email = emailET.getText().toString();
         password = passwordET.getText().toString();
         telefono = telefonoET.getText().toString();
+
 
         if (nome.isEmpty() || cognome.isEmpty() || email.isEmpty() || password.isEmpty() || telefono.isEmpty()) {
             Toast.makeText(getApplicationContext(), "Compilare tutti i campi", Toast.LENGTH_SHORT).show();
