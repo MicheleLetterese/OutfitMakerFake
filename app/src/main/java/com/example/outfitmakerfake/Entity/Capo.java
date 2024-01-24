@@ -28,13 +28,12 @@ public class Capo {
         this.occasione = occasione;
     }
 
-    public Capo(String nome_brand, List<String> colori, String tipologia, String stagionalita, String occasione, Bitmap immagine) {
+    public Capo(String nome_brand, List<String> colori, String tipologia, String stagionalita, String occasione) {
         this.nome_brand = nome_brand;
         this.colori = colori;
         this.tipologia = tipologia;
         this.stagionalita = stagionalita;
         this.occasione = occasione;
-        this.immagine = immagine;
     }
 
     public Capo(String id_indumento, String nome_brand, List<String> colori, String tipologia, String stagionalita, String occasione) {
@@ -62,14 +61,6 @@ public class Capo {
 
     public void setId_indumento(String id_indumento) {
         this.id_indumento = id_indumento;
-    }
-
-    public String getnome_brand() {
-        return nome_brand;
-    }
-
-    public void setnome_brand(String nome_brand) {
-        this.nome_brand = nome_brand;
     }
 
     public String getNome_brand() {

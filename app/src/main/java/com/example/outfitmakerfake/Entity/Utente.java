@@ -21,6 +21,7 @@ public class Utente {
         this.email = email;
         this.password = password;
         this.telefono = telefono;
+        this.idArmadio = idArmadio;
     }
 
     public String getId() {
@@ -69,5 +70,13 @@ public class Utente {
 
     public void setTelefono(String telefono) {
         this.telefono = telefono;
+    }
+
+    public String getIdArmadio() {
+        return idArmadio;
+    }
+
+    public void setIdArmadio(String idArmadio) {
+        this.idArmadio = idArmadio;
     }
 }

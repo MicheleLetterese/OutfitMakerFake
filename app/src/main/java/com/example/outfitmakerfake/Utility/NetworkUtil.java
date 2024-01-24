@@ -1,4 +1,4 @@
-package Utility;
+package com.example.outfitmakerfake.Utility;
 
 import android.content.Context;
 import android.net.ConnectivityManager;

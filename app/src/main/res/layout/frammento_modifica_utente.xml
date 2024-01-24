@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/yellow">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Modifica Dati Utente"
+            android:textSize="30dp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:layout_centerHorizontal="true"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/indietro"
+                android:layout_alignParentRight="true"
+                android:onClick="rimuoviFrammentoModifica"/>
+
+
+        </RelativeLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextNomeNuovo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nome"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextCognomeNuovo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="cognome"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextTelefonoNuovo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Telefono"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ProgressBar
+            android:id="@+id/progressBarModifica"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            android:layout_gravity="center"/>
+
+        <Button
+            android:id="@+id/btn_modifica_dati"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Conferma Dati"
+            android:layout_gravity="center"/>
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

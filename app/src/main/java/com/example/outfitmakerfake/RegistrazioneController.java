@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.outfitmakerfake.Entity.Utente;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -18,7 +19,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import Storage.RegistrazioneService;
 import Storage.UtenteDAO;
-import Utility.NetworkUtil;
+import com.example.outfitmakerfake.Utility.NetworkUtil;
 
 public class RegistrazioneController extends AppCompatActivity {
 
@@ -29,6 +30,7 @@ public class RegistrazioneController extends AppCompatActivity {
     EditText telefonoET;
     ProgressBar progressBar;
 
+    Utente utente;
     String uid;
     String nome;
     String cognome;

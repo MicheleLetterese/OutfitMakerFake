@@ -28,8 +28,7 @@
             android:layout_height="wrap_content"
             android:text="Nome: ..."
             android:textSize="20dp"
-            android:textColor="@color/black"
-            android:textStyle="bold"/>
+            android:textColor="@color/black" />
 
         <TextView
             android:id="@+id/cognomeAU"
@@ -37,8 +36,7 @@
             android:layout_height="wrap_content"
             android:text="Cognome: ..."
             android:textSize="20dp"
-            android:textColor="@color/black"
-            android:textStyle="bold"/>
+            android:textColor="@color/black"/>
 
         <TextView
             android:id="@+id/emailAU"
@@ -46,8 +44,7 @@
             android:layout_height="wrap_content"
             android:text="Email: ..."
             android:textSize="20dp"
-            android:textColor="@color/black"
-            android:textStyle="bold"/>
+            android:textColor="@color/black" />
 
         <TextView
             android:id="@+id/telefonoAU"
@@ -55,15 +52,14 @@
             android:layout_height="wrap_content"
             android:text="Telefono: ..."
             android:textSize="20dp"
-            android:textColor="@color/black"
-            android:textStyle="bold"/>
+            android:textColor="@color/black"/>
 
         <Button
             android:layout_marginTop="20dp"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:text="Modifica Dati"
-            android:id="@+id/btnModificaDati"/>
+            android:onClick="inserimentoModificaDati"/>
 
         <Button
             android:layout_width="200dp"
@@ -73,8 +69,10 @@
     </LinearLayout>
 
         <FrameLayout
+            android:id="@+id/contenitoreModificaDati"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/linearLayout"/>
+            android:layout_below="@id/linearLayout"
+            android:visibility="gone" />
 
 </RelativeLayout>
