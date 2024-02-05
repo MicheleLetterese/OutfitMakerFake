@@ -34,7 +34,7 @@
         <Button
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:text="Crezione Outfit"
+            android:text="Creazione Outfit"
             android:onClick="creazioneClicked"/>
 
         <Button

@@ -1,7 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/yellow">
 
-</LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Istruzioni"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:textSize="40dp"
+            android:textColor="@color/pink"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:drawableLeft="@drawable/generazione"
+            android:gravity="center"
+            android:text="Come generare un outfit?"
+            android:textColor="@color/black"
+            android:textSize="27dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Quando vuoi far creare un nuovo outfit composto dai tuoi capi in armadio, \nclicca sul bottone \'Generazione Outfit\' nella tua pagina home, avrai accesso ad un form attraverso il quale potrai descrivere le tue preferenze sull'outfit finale, che potrai salvare in archivio"
+            android:layout_gravity="center"
+            android:layout_margin="8dp"
+            android:textSize="20dp"
+            android:textColor="@color/black"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:drawableLeft="@drawable/creazione"
+            android:gravity="center"
+            android:text="Come creare un outfit?"
+            android:textColor="@color/black"
+            android:textSize="27dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Quando vuoi creare un nuovo outfit autonomamente, composto anche da un solo capo, clicca sul bottone \'Creazione Outfit\' nella tua pagina home, dove avrai accesso al contenuto del tuo armadio, cliccando 'scegli' su ogni capo puoi formare il tuo outfit con più capi e salvarlo in archivio"
+            android:layout_gravity="center"
+            android:layout_margin="8dp"
+            android:textSize="20dp"
+            android:textColor="@color/black"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:drawableLeft="@drawable/armadio"
+            android:gravity="center"
+            android:text="Come vedo i miei capi?"
+            android:textColor="@color/black"
+            android:textSize="27dp" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tramite il bottone 'armadio' potrai visualizzare i tuoi capi salvati fino a quel momento, avrai la possibilità di eliminarli cliccando l\'icona di cancellazione sull\'immagine del capo, o modificarne i dati inseriti durante la sua aggiunta in armadio. Dall'armadio potrai anche aggiungere altri indumenti cliccando su \'inserisci capo\'"
+            android:layout_gravity="center"
+            android:layout_margin="8dp"
+            android:textSize="20dp"
+            android:textColor="@color/black"/>
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:drawableLeft="@drawable/archivio"
+            android:gravity="center"
+            android:text="Come vedo i miei outfit?"
+            android:textColor="@color/black"
+            android:textSize="27dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tramite il bottone 'archivio' potrai visualizzare tutti gli outfit creati e generati, e cancellare quelli che non ti piacciono più!"
+            android:layout_gravity="center"
+            android:layout_margin="8dp"
+            android:textSize="20dp"
+            android:textColor="@color/black"/>
+
+
+
+
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

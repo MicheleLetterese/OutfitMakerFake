@@ -66,6 +66,12 @@
             android:layout_height="wrap_content"
             android:text="Logout"
             android:onClick="disconnessioneClicked"/>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            android:id="@+id/contenitoreAreaAdmin"/>
     </LinearLayout>
 
         <FrameLayout

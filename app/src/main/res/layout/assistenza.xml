@@ -2,6 +2,91 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/yellow">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Assistenza"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        android:textSize="40dp"
+        android:textColor="@color/pink"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/assistenza1"
+        android:layout_gravity="center"
+        android:textSize="20dp"
+        android:textColor="@color/black"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:drawableLeft="@drawable/telefono"
+        android:gravity="center"
+        android:text="Chiamaci!"
+        android:textColor="@color/black"
+        android:textSize="25dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="8dp"
+        android:textSize="21dp"
+        android:layout_height="wrap_content"
+        android:text="Giuseppe Verdi: 3435776829"
+        android:autoLink="phone"
+        android:textColor="@color/black"/>
+
+    <TextView
+        android:layout_marginLeft="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="21dp"
+        android:layout_marginTop="6dp"
+        android:text="Mario Rossi: 3334786329"
+        android:autoLink="phone"
+        android:textColor="@color/black"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:drawableLeft="@drawable/postaemail"
+        android:gravity="center"
+        android:text="Contattaci!"
+        android:textColor="@color/black"
+        android:textSize="25dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="8dp"
+        android:layout_height="wrap_content"
+        android:textSize="21dp"
+        android:text="Giuseppe Verdi: gverdi@gmail.com"
+        android:autoLink="email"
+        android:textColor="@color/black"/>
+
+    <TextView
+        android:layout_marginLeft="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="21dp"
+        android:layout_marginTop="6dp"
+        android:text="Mario Rossi: mariorossi@gmail.com"
+        android:autoLink="email"
+        android:textColor="@color/black"/>
+
+
+
+
+
 
 </LinearLayout>

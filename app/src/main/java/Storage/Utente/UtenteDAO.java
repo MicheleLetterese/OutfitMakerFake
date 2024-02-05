@@ -8,15 +8,20 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.TaskCompletionSource;
+import com.google.android.gms.tasks.Tasks;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import org.checkerframework.checker.nullness.qual.NonNull;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import Storage.Archivio.ArchivioDAO;
@@ -32,6 +37,7 @@ public class UtenteDAO {
     String idArchivio;
     public ArmadioDAO armadioDAO = new ArmadioDAO(mAuth, db);
     public ArchivioService archivioService = new ArchivioService(new ArchivioDAO());
+
     public UtenteDAO() {
     }
 
@@ -90,7 +96,10 @@ public class UtenteDAO {
         utente.put("password", password);
         utente.put("telefono", telefono);
         utente.put("idArmadio", idArmadio);
-        utente.put("idArchivio", idArchivio);// Aggiorna con il nuovo campo
+        utente.put("idArchivio", idArchivio);
+        utente.put("isAdmin", false);
+        utente.put("appDisattiva", false);
+        // Aggiorna con il nuovo campo
 
         db.collection("utenti")
                 .add(utente)
@@ -134,5 +143,135 @@ public class UtenteDAO {
         }
         return null; // o gestisci questo caso in modo appropriato per il tuo scenario
     }
+
+    public Task<Boolean> isUtenteAdmin() {
+        final TaskCompletionSource taskCompletionSource = new TaskCompletionSource<>();
+
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+
+        if (currentUser != null) {
+            String uid = currentUser.getUid();
+
+            FirebaseFirestore.getInstance().collection("utenti")
+                    .whereEqualTo("uid", uid)
+                    .get()
+                    .addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            if (task.getResult() != null && !task.getResult().isEmpty()) {
+                                // Dovrebbe esserci un solo documento, ma puoi gestire più risultati se necessario
+                                DocumentSnapshot document = task.getResult().getDocuments().get(0);
+
+                                // Ottieni il valore booleano dal campo "isAdmin"
+                                Boolean isAdmin = document.getBoolean("isAdmin");
+
+                                // Verifica se il valore è true o false
+                                if (isAdmin != null) {
+                                    Log.d("utenteadmin", "l'utente è un " + isAdmin);
+                                    taskCompletionSource.setResult(isAdmin);
+                                } else {
+                                    // Il campo "isAdmin" non è presente o è null, consideralo come false
+                                    Log.d("utenteadmin", "// Il campo \"isAdmin\" non è presente o è null, consideralo come false");
+                                    taskCompletionSource.setResult(false);
+                                }
+                            } else {
+                                Log.d("utenteadmin", "Nessun documento trovato");
+                                // Nessun documento trovato, considera come false
+                                taskCompletionSource.setResult(false);
+                            }
+                        } else {
+                            Log.d("utenteadmin", "altri errori a cazzo");
+                            // Gestisci l'errore durante il recupero del documento utente
+                            taskCompletionSource.setResult(false);
+                        }
+                    });
+        } else {
+            // L'utente non è autenticato, considera come false
+            taskCompletionSource.setResult(false);
+        }
+        return taskCompletionSource.getTask();
+    }
+
+    public Task<Void> setBooleanChanges(boolean appDisattiva) {
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        TaskCompletionSource taskCompletionSource = new TaskCompletionSource<>();
+
+        if (currentUser != null) {
+            String uid = currentUser.getUid();
+            Log.d("utentenullo", "l'utente è nullo :(");
+
+            FirebaseFirestore.getInstance()
+                    .collection("utenti")
+                    .get()
+                    .addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            List<Task<Void>> updateTasks = new ArrayList<>();
+
+                            for (DocumentSnapshot document : task.getResult()) {
+                                // Aggiorna il campo appDisattiva per tutti gli utenti
+                                updateTasks.add(document.getReference().update("appDisattiva", appDisattiva));
+                            }
+
+                            // Combina tutte le attività di aggiornamento in una singola attività
+                            Tasks.whenAll(updateTasks)
+                                    .addOnCompleteListener(combinedTask -> {
+                                        if (combinedTask.isSuccessful()) {
+                                            taskCompletionSource.setResult(null);
+                                        } else {
+                                            taskCompletionSource.setException(combinedTask.getException());
+                                        }
+                                    });
+                        } else {
+                            taskCompletionSource.setException(task.getException());
+                        }
+                    });
+        }
+
+            return taskCompletionSource.getTask();
+        }
+
+
+    public Task<Boolean> getAppDisattivaFromFirestore() {
+        TaskCompletionSource<Boolean> taskCompletionSource = new TaskCompletionSource<>();
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+            String uid = currentUser.getUid();
+
+            FirebaseFirestore.getInstance().collection("utenti")
+                .whereEqualTo("uid", uid)
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        if (task.getResult() != null && !task.getResult().isEmpty()) {
+                            // Dovrebbe esserci un solo documento, ma puoi gestire più risultati se necessario
+                            DocumentSnapshot document = task.getResult().getDocuments().get(0);
+
+                            // Ottieni il valore booleano dal campo "appDisattiva"
+                            Boolean appDisattiva = document.getBoolean("appDisattiva");
+
+                            // Verifica se il valore è true o false
+                            if (appDisattiva != null) {
+                                Log.d("appDisattiva", "Il valore di appDisattiva è " + appDisattiva);
+                                taskCompletionSource.setResult(appDisattiva);
+                            } else {
+                                // Il campo "appDisattiva" non è presente o è null, considera come false
+                                Log.d("appDisattiva", "Il campo \"appDisattiva\" non è presente o è null, considera come false");
+                                taskCompletionSource.setResult(false);
+                            }
+                        } else {
+                            Log.d("appDisattiva", "Nessun documento trovato");
+                            // Nessun documento trovato, considera come false
+                            taskCompletionSource.setResult(false);
+                        }
+                    } else {
+                        Log.d("appDisattiva", "Altri errori durante il recupero del documento utente");
+                        // Gestisci l'errore durante il recupero del documento utente
+                        taskCompletionSource.setResult(false);
+                    }
+                });
+
+        return taskCompletionSource.getTask();
+    }
+
+
+
 
 }

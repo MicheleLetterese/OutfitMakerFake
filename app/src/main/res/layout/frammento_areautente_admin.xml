@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/yellow"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Area Utente Admin"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="35dp"
+            android:textStyle="bold" />
+
+
+
+        <TextView
+            android:id="@+id/numUtenti"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Numero utenti: ..."
+            android:textSize="20dp"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/numeroCapi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Numero capi: ..."
+            android:textSize="20dp"
+            android:textColor="@color/black"/>
+
+        <TextView
+            android:id="@+id/numeroOutfit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Numero outfit: ..."
+            android:textSize="20dp"
+            android:textColor="@color/black" />
+
+
+        <Button
+            android:id="@+id/btn_disabilita_app"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Blocca outfitmaker"/>
+
+        <Button
+            android:id="@+id/btn_riattiva_app"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Sblocca outfitmaker"/>
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

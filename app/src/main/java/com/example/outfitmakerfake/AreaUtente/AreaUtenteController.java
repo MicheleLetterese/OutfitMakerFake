@@ -29,9 +29,14 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import org.checkerframework.checker.nullness.qual.NonNull;
 
+import Storage.Utente.UtenteDAO;
+
 public class AreaUtenteController extends AppCompatActivity {
     FragmentManager fm;
-    FrameLayout frammento_modifica_utente;
+
+    FrameLayout frammento_modifica_utente, frammento_areautente_admin;
+
+    //FrameLayout frammento_modifica_utente;
 
     public String nome, cognome, email, telefono;
     TextView nomeTV, cognomeTV, emailTV, telefonoTV;
@@ -44,10 +49,37 @@ public class AreaUtenteController extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.area_utente);
 
+        UtenteDAO utenteDAO=new UtenteDAO(FirebaseAuth.getInstance(), FirebaseFirestore.getInstance());
+
         if (!NetworkUtil.isNetworkAvailable(getApplicationContext())) {
             Toast.makeText(getApplicationContext(), "Connessione Internet assente", Toast.LENGTH_SHORT).show();
             return;
         }
+
+        utenteDAO.isUtenteAdmin().addOnCompleteListener(task -> {
+            if(task.isSuccessful()){
+                Boolean isAdmin=task.getResult();
+                Log.d("isAdmin1" ,"isAdmin:" + isAdmin);
+                if(isAdmin){
+                    Log.d("isAdmin1" ,"isAdmin:" + isAdmin);
+                    frammento_areautente_admin=findViewById(R.id.contenitoreAreaAdmin);
+                    if(frammento_areautente_admin!=null){
+                        frammento_areautente_admin.setVisibility(View.VISIBLE);
+                        FragmentAreaAdmin fragmentAreaAdmin=new FragmentAreaAdmin();
+                        FragmentTransaction ft = fm.beginTransaction();
+                        ft.add(R.id.contenitoreAreaAdmin, fragmentAreaAdmin, "AreaAdmin");
+                        ft.addToBackStack(null);
+                        ft.commit();
+                        Log.d("isAdmin1" ,"isAdmin:" + isAdmin);
+                    } else {
+                        Log.d("isAdmin1", "Frammento_modifica_utente è null");
+                    }
+                }
+            } else {
+                Log.d("isAdmin1", "Errore durante la verifica dell'admin");
+            }
+        });
+
 
         frammento_modifica_utente = findViewById(R.id.contenitoreModificaDati);
 
