@@ -39,7 +39,7 @@
         android:layout_marginLeft="8dp"
         android:textSize="21dp"
         android:layout_height="wrap_content"
-        android:text="Giuseppe Verdi: 3435776829"
+        android:text="Michele Letterese: 3893114394"
         android:autoLink="phone"
         android:textColor="@color/black"/>
 
@@ -49,7 +49,17 @@
         android:layout_height="wrap_content"
         android:textSize="21dp"
         android:layout_marginTop="6dp"
-        android:text="Mario Rossi: 3334786329"
+        android:text="Francesca Avallone: 3801083732"
+        android:autoLink="phone"
+        android:textColor="@color/black"/>
+
+    <TextView
+        android:layout_marginLeft="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="21dp"
+        android:layout_marginTop="6dp"
+        android:text="Rocco Buongiorno: 3407580226"
         android:autoLink="phone"
         android:textColor="@color/black"/>
 
@@ -70,7 +80,7 @@
         android:layout_marginLeft="8dp"
         android:layout_height="wrap_content"
         android:textSize="21dp"
-        android:text="Giuseppe Verdi: gverdi@gmail.com"
+        android:text="Michele Letterese: \nm.letterese@studenti.unisa.it"
         android:autoLink="email"
         android:textColor="@color/black"/>
 
@@ -80,9 +90,21 @@
         android:layout_height="wrap_content"
         android:textSize="21dp"
         android:layout_marginTop="6dp"
-        android:text="Mario Rossi: mariorossi@gmail.com"
+        android:text="Francesca Avallone: \nf.avallone28@studenti.unisa.it"
         android:autoLink="email"
         android:textColor="@color/black"/>
+
+
+    <TextView
+        android:layout_marginLeft="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="21dp"
+        android:layout_marginTop="6dp"
+        android:text="Rocco Buongiorno: r.buongiorno2@studenti.unisa.it"
+        android:autoLink="email"
+        android:textColor="@color/black"/>
+
 
 
 

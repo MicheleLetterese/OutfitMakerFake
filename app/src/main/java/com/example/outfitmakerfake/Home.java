@@ -95,7 +95,7 @@ public class Home extends AppCompatActivity {
                         Log.d("Homearmadiodisab", "l'app è disattiva " + appDisattiva);
                         Toast.makeText(this, "L'app è stata momentaneamente disabilitata", Toast.LENGTH_SHORT).show();
                     } else {
-                        Log.d("Homegenerazionedisab", "l'app è disattiva " + appDisattiva);
+                        Log.d("Homegenerazionedisab", "l'app non è disattiva " + appDisattiva);
                         Intent i = new Intent(getApplicationContext(), ArmadioController.class);
                         i.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                         startActivity(i);

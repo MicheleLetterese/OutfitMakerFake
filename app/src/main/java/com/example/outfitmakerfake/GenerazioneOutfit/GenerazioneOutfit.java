@@ -113,7 +113,7 @@ public class GenerazioneOutfit extends AppCompatActivity {
                 }
 
                 //TIPOLOGIA
-                int selectedRadioButtonIdTip = radioGroup_tipologia.getCheckedRadioButtonId();
+               int selectedRadioButtonIdTip = radioGroup_tipologia.getCheckedRadioButtonId();
                 if (selectedRadioButtonIdTip != -1) {
                     RadioButton selectedRadioButtonTip = findViewById(selectedRadioButtonIdTip);
                     tipologia = selectedRadioButtonTip.getText().toString();
